@@ -3,6 +3,8 @@ import { AiOutlineUser } from 'react-icons/ai';
 
 import { formatDate } from '../../../helpers/formatDate';
 
+import './user-table.scss';
+
 export const UserTable = ({ userItems, users }) => {
     return (
         <table className="rwd-table">
@@ -17,13 +19,8 @@ export const UserTable = ({ userItems, users }) => {
                     return (
                         <tr
                             key={u.id}
-                            style={
-                                !u.is_active
-                                    ? {
-                                          backgroundColor: '#e71c48',
-                                          color: 'white'
-                                      }
-                                    : null
+                            className={
+                                !u.is_active ? 'row-deactivate' : null
                             }>
                             <td>
                                 <AiOutlineUser />

@@ -1,0 +1,22 @@
+.sites-container {
+  margin-top: 5%;
+
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+.sites-list {
+  @include grid(4, 1);
+  gap: 20px;
+
+  @media screen and (max-width: $screen-md) {
+    @include grid(3, 1);
+  }
+  @media screen and (max-width: $screen-sm) {
+    @include grid(2, 1);
+  }
+  @media screen and (max-width: $screen-xs) {
+    @include grid(1, 1);
+  }
+}

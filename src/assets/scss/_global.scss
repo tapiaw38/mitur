@@ -1,0 +1,187 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+// sections and containers
+
+.section {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+// buttons
+
+@mixin button($bgColor, $bgColorHover, $color, $colorHover) {
+    padding: 10px;
+    border-radius: 14px;
+    background-color: $bgColor;
+    color: $color;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    &:hover {
+        background-color: $bgColorHover;
+        color: $colorHover;
+        transition: 0.3s;
+    }
+}
+
+.button-primary {
+    @include button($PRIMARY, $SECONDARY, $BLACK, $WHITE);
+}
+
+.button-secondary {
+    @include button($SECONDARY, $PRIMARY, $WHITE, $BLACK);
+}
+
+// forms
+
+.form-control {
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+}
+
+// titles
+
+.title-primary-1 {
+    @include title($PRIMARY, 20px)
+}
+
+.title-secondary-1 {
+    @include title($SECONDARY, 20px)
+}
+
+// table
+
+.rwd-table {
+    min-width: 300px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rwd-table tr:first-child {
+    border-top: none;
+    background: $SECONDARY;
+    color: #fff;
+}
+
+.rwd-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: $WHITE;
+}
+
+.rwd-table tr:nth-child(odd):not(:first-child) {
+    background-color: $INFO;
+}
+
+.rwd-table th {
+    display: none;
+}
+
+.rwd-table td {
+    display: block;
+}
+
+.rwd-table td:first-child {
+    margin-top: 0.5em;
+}
+
+.rwd-table td:last-child {
+    margin-bottom: 0.5em;
+}
+
+.rwd-table td:before {
+    content: attr(data-th) '';
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    display: inline-block;
+    color: $SECONDARY;
+}
+
+.rwd-table th,
+.rwd-table td {
+    text-align: left;
+}
+
+.rwd-table {
+    color: #333;
+    border-radius: 0.4em;
+    overflow: hidden;
+}
+
+.rwd-table tr {
+    border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+    padding: 0.5em 1em;
+}
+@media screen and (max-width: 1200px) {
+    .rwd-table tr:nth-child(2) {
+        border-top: none;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .rwd-table tr:hover:not(:first-child) {
+        background-color: #d8e7f3;
+    }
+    .rwd-table td:before {
+        display: none;
+    }
+    .rwd-table th,
+    .rwd-table td {
+        display: table-cell;
+        padding: 0.25em 0.5em;
+    }
+    .rwd-table th:first-child,
+    .rwd-table td:first-child {
+        padding-left: 0;
+    }
+    .rwd-table th:last-child,
+    .rwd-table td:last-child {
+        padding-right: 0;
+    }
+    .rwd-table th,
+    .rwd-table td {
+        padding: 1em !important;
+    }
+}

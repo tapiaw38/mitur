@@ -1,0 +1,28 @@
+// colors
+$PRIMARY: #7e00f3;
+$SECONDARY: #312b2b;
+$INFO: #00f3cb;
+$SUCCESS: #00f300;
+$WARNING: #ee730f;
+$DANGER: #e71c48;
+$WHITE: #fff;
+$BLACK: #000;
+
+// screens
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+// mixins
+@mixin grid($columns, $rows) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  grid-template-rows: repeat($rows, 1fr);
+}
+
+@mixin title ($color, $size) {
+  color: $color;
+  font-size: $size;
+  font-weight: 500;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 
+import { formatDate } from '../../../helpers/formatDate';
+
 export const UserTable = ({ userItems, users }) => {
     return (
         <table className="rwd-table">
@@ -34,7 +36,7 @@ export const UserTable = ({ userItems, users }) => {
                             <td>
                                 {u.is_active ? 'Activo' : 'Bloqueado'}
                             </td>
-                            <td>{u.updated_at}</td>
+                            <td>{formatDate(u.updated_at)}</td>
                             <td>
                                 <button className="button-primary">
                                     {u.is_active

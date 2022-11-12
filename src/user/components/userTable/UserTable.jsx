@@ -35,7 +35,7 @@ export const UserTable = ({ userItems, users }) => {
                             </td>
                             <td>{formatDate(u.updated_at)}</td>
                             <td>
-                                <button className="button-primary">
+                                <button className="button-primary toggle-button">
                                     {u.is_active
                                         ? 'Bloquear'
                                         : 'Activar'}

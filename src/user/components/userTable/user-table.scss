@@ -2,3 +2,9 @@
     background-color: $DANGER !important;
     color: $WHITE;
 }
+
+.toggle-button {
+    @media screen and (max-width: 1200px) {
+        width: 100%;
+    }
+}

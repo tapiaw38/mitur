@@ -17,7 +17,7 @@ export const Navbar = () => {
     <div className="container">
       <nav>
         <div className="logo">Mitur</div>
-        <ul>
+        <ul className='font-roboto'>
           {listLinks.map(link => {
             if (
               link.publicOnly &&

@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/auth/authSlice';
-import { SingInWithEmailAndPassword } from '../../store/auth/thunks';
+import { getUserProfile, SingInWithEmailAndPassword } from '../../store/auth/thunks';
 
 export const useAuth = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { status } = useSelector((state) => state.auth);
-    const { user } = useSelector((state) => state.auth);
+    const { user, status, userProfile } = useSelector((state) => state.auth);
 
     const onLogin = (form) => {
         dispatch(SingInWithEmailAndPassword(form));
@@ -22,10 +21,16 @@ export const useAuth = () => {
         navigate('/auth/login');
     };
 
+    const getProfile = () => {
+        dispatch(getUserProfile());
+    };
+
     return {
         onLogin,
         onLogout,
         status,
-        user
+        user,
+        userProfile,
+        getProfile,
     };
 };

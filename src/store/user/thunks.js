@@ -6,7 +6,7 @@ export const getUsers = () => {
         dispatch(startLoadingUsers());
 
         try {
-            const { data } = await api.get('/users/all');
+            const { data } = await api.get('/users/list');
             dispatch(setUsers(data.response));
         } catch (error) {
             return;

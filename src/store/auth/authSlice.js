@@ -13,6 +13,7 @@ export const authSlice = createSlice({
       ? localStorage.getItem('accessToken')
       : null,
     errorMessage: null,
+    userProfile: null,
   },
   reducers: {
     login: (state, { payload }) => {
@@ -33,7 +34,10 @@ export const authSlice = createSlice({
     checkingCredentials: state => {
       state.status = 'checking';
     },
+    setUserProfile: (state, { payload }) => {
+      state.userProfile = payload;
+    }
   },
 });
 
-export const { login, logout, checkingCredentials } = authSlice.actions;
+export const { login, logout, checkingCredentials, setUserProfile } = authSlice.actions;

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './user-page.scss';
 
 import { useUsers } from '../../hooks/useUsers';
 import { UserTable } from '../../components/userTable/UserTable';
 import { Loader } from '../../../ui/components/loader/Loader';
+import { SearchUsers } from '../../components/searchUsers/SearchUsers';
 
 export const UserPage = () => {
     const { getAllUsers, users } = useUsers();
@@ -22,20 +23,25 @@ export const UserPage = () => {
         'Acciones'
     ];
 
-    const handleSearchUsers = (e) => {
-        setSearch(e.target.value);
-    };
+    const handleSearchUsers = useCallback(
+        (e) => setSearch(e.target.value),
+        []
+    );
 
-    const filteredUsers = users.filter((user) => {
-        return (
-            user.first_name
-                .toLowerCase()
-                .includes(search.toLowerCase()) ||
-            user.last_name
-                .toLowerCase()
-                .includes(search.toLowerCase())
-        );
-    });
+    const filteredUsers = useMemo(
+        () =>
+            users.filter((user) => {
+                return (
+                    user.first_name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                    user.last_name
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                );
+            }),
+        [users, search]
+    );
 
     useEffect(() => {
         getAllUsers();
@@ -48,16 +54,14 @@ export const UserPage = () => {
                     <h1 className="title-secondary-1">
                         Usuarios registrados
                     </h1>
-                    <div className="flex flex-column search-users">
-                        <p>Buscar usuario</p>
-                        <input
-                            type="text"
-                            name="search"
-                            value={search}
-                            onChange={handleSearchUsers}
-                        />
-                    </div>
-                    <UserTable userItems={userItems} users={filteredUsers} />
+                    <SearchUsers
+                        search={search}
+                        handleSearchUsers={handleSearchUsers}
+                    />
+                    <UserTable
+                        userItems={userItems}
+                        users={filteredUsers}
+                    />
                 </div>
             ) : (
                 <Loader />

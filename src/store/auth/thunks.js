@@ -1,5 +1,6 @@
-import { checkingCredentials, login, logout } from './authSlice';
+import { checkingCredentials, login, logout, setUserProfile } from './authSlice';
 import { authApi } from '../../api/authApi';
+import { api } from '../../api/api';
 
 export const checkingAuthentication = () => {
   return async dispatch => {
@@ -14,9 +15,9 @@ export const SingInWithEmailAndPassword = ({ email, password }) => {
       const { data } = await authApi.post('/users/login', { email, password });
       dispatch(login(data.response));
 
-      const { user, access_token } = data.response;
+      const { user, token } = data.response;
 
-      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("accessToken", token);
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("status", "authenticated");
     } catch (error) {
@@ -25,3 +26,13 @@ export const SingInWithEmailAndPassword = ({ email, password }) => {
   };
 };
 
+export const getUserProfile = () => {
+  return async dispatch => {
+    try {
+      const { data } = await api.get('/users/me');
+      dispatch(setUserProfile(data.response));
+    } catch (error) {
+      return;
+    }
+  };
+}

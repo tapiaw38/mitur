@@ -1,6 +1,5 @@
 import React from 'react';
 import './tour-page.scss';
-import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../../auth/hooks/useAuth';
 
@@ -13,14 +12,10 @@ import home01 from '../../../assets/img/home/home01.jpg';
 import home02 from '../../../assets/img/home/home02.jpg';
 import home03 from '../../../assets/img/home/home03.jpg';
 import home04 from '../../../assets/img/home/home04.jpg';
+import { GoogleButton } from '../../../auth/components/googleButton/GoogleButton';
 
 export const TourPage = () => {
-    const navigate = useNavigate();
     const { status, user } = useAuth();
-
-    const loginRedirect = () => {
-        navigate('/auth/login');
-    };
 
     const homeImages = [
         {
@@ -47,27 +42,20 @@ export const TourPage = () => {
                 <div className="flex">
                     <img src={logo} alt="logo" />
                 </div>
-                {
-                    status === 'not-authenticated' ? (
-                        <div className="flex flex-row align-items-center buttons-container">
-                            <button
-                                className="button-secondary"
-                                onClick={loginRedirect}>
-                                Iniciar con Google
-                            </button>
-                            <button className="button-secondary">
-                                Crear una cuenta
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="flex flex-row align-items-center buttons-container">
-                            <h2 className="font-quicksand color-primary">
-                                Bienvenido {user.first_name}
-                            </h2>
-                        </div>
-                    )
-                }
-                
+                {status === 'not-authenticated' ? (
+                    <div className="flex flex-row align-items-center buttons-container">
+                        <GoogleButton />
+                        <button className="button-secondary">
+                            Crear una cuenta
+                        </button>
+                    </div>
+                ) : (
+                    <div className="flex flex-row align-items-center buttons-container">
+                        <h2 className="font-quicksand color-primary">
+                            Hola {user.first_name}!
+                        </h2>
+                    </div>
+                )}
             </div>
             <div className="section-travel flex flex-column justify-content-center align-items-center">
                 <div className="flex flex-row">
@@ -93,6 +81,7 @@ export const TourPage = () => {
                 <div className="flex flex-row justify-content-center align-items-center carousel-container">
                     {homeImages.map((image) => (
                         <img
+                            key={image.alt}
                             className="carousel-image"
                             src={image.img}
                             alt={image.alt}

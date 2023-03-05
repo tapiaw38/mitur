@@ -6,6 +6,8 @@ import { formatDate } from '../../../helpers/formatDate';
 import './user-table.scss';
 
 export const UserTable = ({ userItems, users }) => {
+    const N0_ROLE_NEED = 'superadmin';
+
     return (
         <table className="rwd-table">
             <tbody>
@@ -15,7 +17,14 @@ export const UserTable = ({ userItems, users }) => {
                     })}
                 </tr>
                 {users.map((u) => {
-                    if (u.is_admin) return;
+                    if (u.roles) {
+                        const hasRole = u.roles.some(
+                            (r) => r.name === N0_ROLE_NEED
+                        );
+                        if (hasRole) {
+                            return null;
+                        }
+                    }
                     return (
                         <tr
                             key={u.id}
@@ -28,10 +37,25 @@ export const UserTable = ({ userItems, users }) => {
                             <td>{u.first_name}</td>
                             <td>{u.last_name}</td>
                             <td>{u.email}</td>
-                            <td>{u.phone_number}</td>
-                            <td>Partner</td>
+                            <td>{u?.phone_number}</td>
+                            <td>
+                                {u.roles
+                                    ? u.roles.map((r) => {
+                                          return (
+                                              <span
+                                                  key={r.id}
+                                                  className="role">
+                                                  {r.name}
+                                              </span>
+                                          );
+                                      })
+                                    : 'Sin roles'}
+                            </td>
                             <td>
                                 {u.is_active ? 'Activo' : 'Bloqueado'}
+                            </td>
+                            <td>
+                                {u.verified_email ? 'Verificado' : 'No verificado'}
                             </td>
                             <td>{formatDate(u.updated_at)}</td>
                             <td>

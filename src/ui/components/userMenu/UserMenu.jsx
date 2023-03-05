@@ -5,6 +5,8 @@ import { UserMenuModal } from '../userMenuModal/UserMenuModal';
 
 import { BsFillCaretDownFill } from 'react-icons/bs';
 
+import profileIcon from '../../../assets/img/auth/profile.png';
+
 export const UserMenu = ({ user, logout }) => {
     const [openUserMenu, setopenUserMenu] = useState(false);
     const toggleMenu = () => {
@@ -16,7 +18,10 @@ export const UserMenu = ({ user, logout }) => {
             <div className="user-data flex flex-row justify-content-center align-items-center">
                 <img
                     className="user-image"
-                    src={user.picture}
+                    src={
+                        user?.picture ? user.picture
+                            : profileIcon
+                    }
                     alt={user.username}
                 />
                 <div

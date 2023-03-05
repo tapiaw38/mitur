@@ -1,0 +1,41 @@
+.container-card-profile {
+    height: 100vh;
+    width: 100%;
+}
+
+.card-profile {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 400px;
+    margin-top: 3rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    background-color: $WHITE;
+}
+
+.card-img {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0.5rem;
+    padding: 0;
+}
+
+.btn-edit-profile {
+    width: 100%;
+}
+
+.button-back {
+    position: relative;
+    float: left;
+}

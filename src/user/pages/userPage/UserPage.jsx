@@ -17,8 +17,9 @@ export const UserPage = () => {
         'Apellido',
         'Email',
         'Teléfono',
-        'Tipo de usuario',
+        'Roles',
         'Estado',
+        'Email verificado',
         'Ultima modificación',
         'Acciones'
     ];

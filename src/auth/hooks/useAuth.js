@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/auth/authSlice';
-import { getUserProfile, SingInWithEmailAndPassword } from '../../store/auth/thunks';
+import { getUserProfile, SingInWithEmailAndPassword, SingInWithGoogle } from '../../store/auth/thunks';
 
 export const useAuth = () => {
     const dispatch = useDispatch();
@@ -16,6 +16,10 @@ export const useAuth = () => {
         }
     };
 
+    const onGoogleLogin = (sso_type,code) => {
+        dispatch(SingInWithGoogle(sso_type,code));
+    };
+
     const onLogout = (errorMessage = null) => {
         dispatch(logout({ errorMessage }));
         navigate('/auth/login');
@@ -27,6 +31,7 @@ export const useAuth = () => {
 
     return {
         onLogin,
+        onGoogleLogin,
         onLogout,
         status,
         user,

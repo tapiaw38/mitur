@@ -23,7 +23,7 @@ const listLinks = [
         slug: 'login',
         private: false,
         publicOnly: true
-    }
+    },
 ];
 
 export { listLinks };

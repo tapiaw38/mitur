@@ -13,7 +13,8 @@ export const authSlice = createSlice({
             ? localStorage.getItem('accessToken')
             : null,
         errorMessage: null,
-        userProfile: null
+        userProfile: null,
+        userCreated: null
     },
     reducers: {
         login: (state, { payload }) => {
@@ -36,9 +37,18 @@ export const authSlice = createSlice({
         },
         setUserProfile: (state, { payload }) => {
             state.userProfile = payload;
+        },
+        setUserCreated: (state, { payload }) => {
+            console.log(payload);
+            state.userCreated = payload;
         }
     }
 });
 
-export const { login, logout, checkingCredentials, setUserProfile } =
-    authSlice.actions;
+export const {
+    login,
+    logout,
+    checkingCredentials,
+    setUserProfile,
+    setUserCreated,
+} = authSlice.actions;

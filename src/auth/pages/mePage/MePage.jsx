@@ -1,13 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './me-page.scss';
 
 import { useAuth } from '../../hooks/useAuth';
 
 import profileIcon from '../../../assets/img/auth/profile.png';
+import { useModal } from '../../../hooks/useModal';
+import { BaseModal } from '../../../ui/components/baseModal/BaseModal';
+import { UserForm } from '../../components/userForm/UserForm';
+import { useForm } from '../../../hooks/useForm';
 
 export const MePage = () => {
     const { getProfile, userProfile, user } = useAuth();
+    const { showModal, setShowModal, handleCloseModal } = useModal();
+    const { formState, onInputChange } = useForm({
+        first_name: userProfile?.first_name || '',
+        last_name: userProfile?.last_name || '',
+        phone_number: userProfile?.phone_number || '',
+        address: userProfile?.address || ''
+    });
+    const [errors, setErrors] = useState({});
+
+    const PHONE_NUMBER_REGEX = /^[0-9]{10}$/;
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!PHONE_NUMBER_REGEX.test(formState.phone_number)) {
+            setErrors({
+                ...errors,
+                phone_number: 'El número de teléfono no es válido'
+            });
+        } else if (formState.phone_number.length < 10) {
+            setErrors({
+                ...errors,
+                phone_number:
+                    'El número de teléfono debe tener 10 dígitos'
+            });
+        } else {
+            console.log(formState);
+            //onEditProfile(formState);
+        }
+    };
 
     useEffect(() => {
         getProfile();
@@ -15,10 +48,10 @@ export const MePage = () => {
 
     return (
         <>
-            <div className='button-back-container'>
-            <NavLink className="button-primary btn-back" to="/">
-                Volver al Inicio
-            </NavLink>
+            <div className="button-back-container">
+                <NavLink className="button-primary btn-back" to="/">
+                    Volver al Inicio
+                </NavLink>
             </div>
             <div className="flex flex-row justify-content-center container-card-profile">
                 <div className="flex flex-row justify-content-center align-items-center">
@@ -38,27 +71,47 @@ export const MePage = () => {
                             </div>
                         </div>
                         <div className="flex flex-column card-body align-items-center justify-content-center">
-                            <span className="card-title color-secondary">
+                            <span className="profile-title color-secondary">
                                 {userProfile?.first_name}{' '}
                                 {userProfile?.last_name}
                             </span>
-                            <span className="card-title color-secondary">
+                            <span className="profile-title color-secondary">
                                 Email: {userProfile?.email}
                             </span>
-                            <span className="card-title color-secondary">
-                                Tel: {userProfile?.phone_number}
+                            <span className="profile-title color-secondary">
+                                Tel:{' '}
+                                {userProfile?.phone_number ||
+                                    'Sin registrar'}
                             </span>
-                            <span className="card-title color-secondary">
-                                Direccion: {userProfile?.address}
+                            <span className="profile-title color-secondary">
+                                Direccion:{' '}
+                                {userProfile?.address ||
+                                    'Sin registrar'}
                             </span>
                         </div>
                         <div className="flex flex-row justify-content-center mb-2">
-                            <button className="button-secondary btn-edit-profile">
+                            <button
+                                onClick={() => setShowModal(true)}
+                                className="button-secondary btn-edit-profile">
                                 Editar perfil
                             </button>
                         </div>
                     </div>
                 </div>
+                {/* edit profile modal */}
+                <BaseModal
+                    show={showModal}
+                    handleClose={handleCloseModal}>
+                    <div className="flex flex-column align-items-center justify-content-center">
+                        <h2>Editar datos de usuario</h2>
+                        <UserForm
+                            onInputChange={onInputChange}
+                            formState={formState}
+                            onSubmit={onSubmit}
+                            errors={errors}
+                        />
+                    </div>
+                </BaseModal>
             </div>
         </>
     );

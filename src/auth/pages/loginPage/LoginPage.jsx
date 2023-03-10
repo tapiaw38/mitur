@@ -4,33 +4,46 @@ import { useForm } from '../../../hooks/useForm';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
-import './login-page.scss'
+import './login-page.scss';
 
 export const LoginPage = () => {
+    const { onLogin, userCreated } = useAuth();
+    const { formState, onInputChange } = useForm({
+        email: '',
+        password: ''
+    });
 
-  const { onLogin } = useAuth();
-  const { formState, onInputChange } = useForm({
-    email: '',
-    password: '',
-  });
+    const onSubmit = (e) => {
+        e.preventDefault();
+        onLogin(formState);
+    };
 
-  const onSubmit = e => {
-    e.preventDefault();
-    onLogin(formState);
-  };
+    const showUserCreatedMessage = () => {
+        if (userCreated) {
+            return (
+                <div className='user-created'>
+                    <p>Usuario creado correctamente</p>
+                    <p>Te hemos enviado un link para validar tu email a { userCreated.email }</p>
+                </div>
+            );
+        }
 
-  return (
-    <>
-      <div className="button-back-container">
-        <NavLink className="button-primary btn-back" to="/">
-          Volver al Inicio
-        </NavLink>
-      </div>
-      <LoginForm
-        onInputChange={onInputChange}
-        formState={formState}
-        onSubmit={onSubmit}
-      />
-    </>
-  );
+        return null;
+    };
+
+    return (
+        <>
+            <div className="button-back-container">
+                <NavLink className="button-primary btn-back" to="/">
+                    Volver al Inicio
+                </NavLink>
+            </div>
+            <LoginForm
+                onInputChange={onInputChange}
+                formState={formState}
+                onSubmit={onSubmit}
+            />
+            { showUserCreatedMessage() }
+        </>
+    );
 };

@@ -13,6 +13,7 @@ import home02 from '../../../assets/img/home/home02.jpg';
 import home03 from '../../../assets/img/home/home03.jpg';
 import home04 from '../../../assets/img/home/home04.jpg';
 import { GoogleButton } from '../../../auth/components/googleButton/GoogleButton';
+import { NavLink } from 'react-router-dom';
 
 export const TourPage = () => {
     const { status, user } = useAuth();
@@ -45,9 +46,9 @@ export const TourPage = () => {
                 {status === 'not-authenticated' ? (
                     <div className="flex flex-row align-items-center buttons-container">
                         <GoogleButton />
-                        <button className="button-secondary">
+                        <NavLink className="button-secondary" to={"/auth/register"}>
                             Crear una cuenta
-                        </button>
+                        </NavLink>
                     </div>
                 ) : (
                     <div className="flex flex-row align-items-center buttons-container">

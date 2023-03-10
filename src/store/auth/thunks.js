@@ -1,4 +1,4 @@
-import { checkingCredentials, login, logout, setUserProfile } from './authSlice';
+import { checkingCredentials, login, logout, setUserProfile, setUserCreated } from './authSlice';
 import { authApi } from '../../api/authApi';
 import { api } from '../../api/api';
 
@@ -8,7 +8,19 @@ export const checkingAuthentication = () => {
   };
 };
 
-export const SingInWithEmailAndPassword = ({ email, password }) => {
+export const registerWithEmailAndPassword = ({ first_name, last_name, username, email, password }) => {
+  return async dispatch => {
+    try {
+      const { data } = await authApi.post('/auth/signup', { first_name, last_name, username, email, password });
+      dispatch(setUserCreated(data.response));
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const singInWithEmailAndPassword = ({ email, password }) => {
   return async dispatch => {
     dispatch(checkingCredentials());
     try {
@@ -25,7 +37,7 @@ export const SingInWithEmailAndPassword = ({ email, password }) => {
   };
 };
 
-export const SingInWithGoogle = (sso_type, code) => {
+export const singInWithGoogle = (sso_type, code) => {
   return async dispatch => {
     dispatch(checkingCredentials());
     try {

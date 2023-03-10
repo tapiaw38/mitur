@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleButton } from '../googleButton/GoogleButton';
+import { NavLink } from 'react-router-dom';
 import './login-form.scss';
 
 export const LoginForm = (props) => {
@@ -38,9 +38,10 @@ export const LoginForm = (props) => {
                     </div>
                 </div>
             </form>
-            <div className='container-google-btn mt-2'>
-                <GoogleButton />
-            </div>
+            <span className="flex flex-row mt-2">
+                Aún no tienes una cuenta?
+                <NavLink className="ml-1" to="/auth/register">Registar</NavLink>
+            </span>
         </div>
     );
 };

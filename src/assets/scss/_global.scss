@@ -172,15 +172,15 @@ body {
 .form-control {
     label {
         display: block;
-        margin-bottom: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     input {
         width: 100%;
         padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        border: 1px solid $SECONDARY;
+        border-radius: 5px;
         box-sizing: border-box;
-        margin-bottom: 10px;
     }
 }
 

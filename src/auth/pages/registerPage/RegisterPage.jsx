@@ -4,7 +4,7 @@ import { useForm } from '../../../hooks/useForm';
 import { RegisterForm } from '../../components/registerFom/RegisterForm';
 import { useAuth } from '../../hooks/useAuth';
 
-import './register-page.scss';
+import './RegisterPage.scss';
 
 export const RegisterPage = () => {
     const { formState, onInputChange } = useForm({

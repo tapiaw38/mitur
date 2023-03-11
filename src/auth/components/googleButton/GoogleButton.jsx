@@ -1,5 +1,5 @@
 import React from 'react';
-import "./google-button.scss"
+import "./GoogleButton.scss"
 
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAuth } from '../../hooks/useAuth';

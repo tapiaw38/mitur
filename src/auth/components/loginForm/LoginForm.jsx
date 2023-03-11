@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './login-form.scss';
+import './LoginForm.scss';
 
 export const LoginForm = (props) => {
     const { onInputChange, formState, onSubmit } = props;

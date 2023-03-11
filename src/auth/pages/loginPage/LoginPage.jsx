@@ -4,7 +4,7 @@ import { useForm } from '../../../hooks/useForm';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
-import './login-page.scss';
+import './LoginPage.scss';
 
 export const LoginPage = () => {
     const { onLogin, userCreated } = useAuth();

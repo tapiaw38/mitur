@@ -110,7 +110,7 @@ export const MePage = () => {
                     show={showModal}
                     handleClose={handleCloseModal}>
                     <div className="flex flex-column align-items-center justify-content-center">
-                        <h2>Editar datos de usuario</h2>
+                        <h3>Editar datos de usuario</h3>
                         <UserForm
                             onInputChange={onInputChange}
                             formState={formState}

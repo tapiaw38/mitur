@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './register-form.scss';
+import './RegisterForm.scss';
 
 export const RegisterForm = (props) => {
     const { onInputChange, formState, onSubmit, errors } = props;
@@ -100,7 +100,7 @@ export const RegisterForm = (props) => {
             </form>
             <span className="flex flex-row mt-2">
                 Ya tenes una cuenta?
-                <NavLink className="ml-1" to="/auth/login">ingresar</NavLink>
+                <NavLink className="ml-1" to="/auth/login">Ingresar</NavLink>
             </span>
         </div>
     );

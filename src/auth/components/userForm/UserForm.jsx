@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './user-form.scss';
+import './UserForm.scss';
 
 export const UserForm = (props) => {
     const { onInputChange, formState, onSubmit, errors } = props;

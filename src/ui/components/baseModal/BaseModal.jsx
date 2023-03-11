@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './base-modal.scss';
+import './BaseModal.scss';
 
 export const BaseModal = (props) => {
     const { show, handleClose, children } = props;

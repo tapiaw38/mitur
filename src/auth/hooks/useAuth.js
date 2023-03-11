@@ -5,7 +5,9 @@ import {
     getUserProfile,
     registerWithEmailAndPassword,
     singInWithEmailAndPassword,
-    singInWithGoogle
+    singInWithGoogle,
+    updateUserProfile,
+
 } from '../../store/auth/thunks';
 
 export const useAuth = () => {
@@ -43,6 +45,10 @@ export const useAuth = () => {
         dispatch(getUserProfile());
     };
 
+    const updateUser = (user) => {
+        dispatch(updateUserProfile(user));
+    };
+
     return {
         onRegister,
         onLogin,
@@ -52,6 +58,7 @@ export const useAuth = () => {
         user,
         userCreated,
         userProfile,
-        getProfile
+        getProfile,
+        updateUser,
     };
 };

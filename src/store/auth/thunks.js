@@ -64,3 +64,15 @@ export const getUserProfile = () => {
     }
   };
 }
+
+export const updateUserProfile = (user) => {
+  return async dispatch => {
+    try {
+      const { data } = await api.put(`/users/${user.id}`, user);
+      console.log(data.response);
+      dispatch(setUserProfile(data.response));
+    } catch (error) {
+      return;
+    }
+  };
+}

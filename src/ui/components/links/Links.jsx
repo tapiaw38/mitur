@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import './links.scss';
+import './Links.scss';
 
 export const Links = ({ link }) => {
   const { to, title } = link;

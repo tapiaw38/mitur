@@ -1,5 +1,5 @@
 import React from 'react';
-import './tour-page.scss';
+import './TourPage.scss';
 
 import { useAuth } from '../../../auth/hooks/useAuth';
 

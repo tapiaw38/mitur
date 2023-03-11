@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './user-menu.scss';
+import './UserMenu.scss';
 
 import { UserMenuModal } from '../userMenuModal/UserMenuModal';
 

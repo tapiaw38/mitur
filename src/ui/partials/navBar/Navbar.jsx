@@ -3,7 +3,7 @@ import { useAuth } from '../../../auth/hooks/useAuth';
 import { listLinks } from '../../../helpers/listLinks';
 import { Links } from '../../components/links/Links';
 import { UserMenu } from '../../components/userMenu/UserMenu';
-import './navbar.scss';
+import './Navbar.scss';
 
 export const Navbar = () => {
   const { onLogout, status, user } = useAuth();

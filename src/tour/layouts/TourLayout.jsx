@@ -1,5 +1,5 @@
 import React from 'react';
-import './tour-layout.scss';
+import './TourLayout.scss';
 
 export const TourLayout = ({ children }) => {
     return (

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import './user-page.scss';
+import './UserPage.scss';
 
 import { useUsers } from '../../hooks/useUsers';
 import { UserTable } from '../../components/userTable/UserTable';

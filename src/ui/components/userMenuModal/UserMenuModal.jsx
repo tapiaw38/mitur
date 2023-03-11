@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './user-menu-modal.scss';
+import './UserMenuModal.scss';
 
 export const UserMenuModal = ({ logout }) => {
     return (

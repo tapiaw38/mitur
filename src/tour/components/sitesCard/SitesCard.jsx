@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './sites-card.scss';
+import './SitesCard.scss';
 
 export const SitesCard = ({ sites }) => {
   const { title, description, image, city } = sites;

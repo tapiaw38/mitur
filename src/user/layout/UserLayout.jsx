@@ -1,5 +1,5 @@
 import React from 'react';
-import './user-layout.scss';
+import './UserLayout.scss';
 
 export const UserLayout = ({ children }) => {
     return <div className="container-user">{children}</div>;

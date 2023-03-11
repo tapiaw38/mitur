@@ -1,8 +1,8 @@
 import React from 'react';
+import './SitesPage.scss';
 import { Link } from 'react-router-dom';
 import { listSites } from '../../../helpers/listSites';
 import { SitesCard } from '../../components/sitesCard/SitesCard';
-import './sites-page.scss';
 
 export const SitesPage = () => {
     return (

@@ -3,7 +3,7 @@ import { AiOutlineUser } from 'react-icons/ai';
 
 import { formatDate } from '../../../helpers/formatDate';
 
-import './user-table.scss';
+import './UserTable.scss';
 
 export const UserTable = ({ userItems, users }) => {
     const N0_ROLE_NEED = 'superadmin';

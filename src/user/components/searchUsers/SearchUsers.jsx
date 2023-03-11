@@ -1,5 +1,5 @@
 import React from 'react';
-import './search-users.scss';
+import './SearchUsers.scss';
 
 export const SearchUsers = ({ search, handleSearchUsers }) => {
     return (

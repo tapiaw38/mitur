@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './me-page.scss';
+import './MePage.scss';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -11,16 +11,23 @@ import { UserForm } from '../../components/userForm/UserForm';
 import { useForm } from '../../../hooks/useForm';
 
 export const MePage = () => {
-    const { getProfile, userProfile, user } = useAuth();
+    const { getProfile, userProfile, updateUser } = useAuth();
     const { showModal, setShowModal, handleCloseModal } = useModal();
     const { formState, onInputChange } = useForm({
+        id: userProfile?.id || '',
         first_name: userProfile?.first_name || '',
         last_name: userProfile?.last_name || '',
+        email: userProfile?.email || '',
+        username: userProfile?.username || '',
         phone_number: userProfile?.phone_number || '',
-        address: userProfile?.address || ''
+        picture: userProfile?.picture || '',
+        address: userProfile?.address || '',
+        is_active: userProfile?.is_active || '',
+        verified_email: userProfile?.verified_email || '',
+        token: userProfile?.token || '',
+        token_expiry: userProfile?.token_expiry || ''
     });
     const [errors, setErrors] = useState({});
-
     const PHONE_NUMBER_REGEX = /^[0-9]{10}$/;
 
     const onSubmit = (e) => {
@@ -37,8 +44,8 @@ export const MePage = () => {
                     'El número de teléfono debe tener 10 dígitos'
             });
         } else {
-            console.log(formState);
-            //onEditProfile(formState);
+            updateUser(formState);
+            handleCloseModal();
         }
     };
 
@@ -61,8 +68,8 @@ export const MePage = () => {
                                 className="card-img"
                                 style={{
                                     backgroundImage: `url(${
-                                        user?.picture
-                                            ? user.picture
+                                        userProfile?.picture
+                                            ? userProfile.picture
                                             : profileIcon
                                     })`
                                 }}></div>

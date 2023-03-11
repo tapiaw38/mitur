@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { listSites } from '../../../helpers/listSites';
-import './site-page.scss';
+import './SitePage.scss';
 
 export const SitePage = () => {
   const { id } = useParams();

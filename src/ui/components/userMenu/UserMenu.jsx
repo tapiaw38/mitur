@@ -22,13 +22,13 @@ export const UserMenu = ({ user, logout }) => {
                         user?.picture ? user.picture
                             : profileIcon
                     }
-                    alt={user.username}
+                    alt={user?.username}
                 />
                 <div
                     className="flex flex-row justify-content-center align-items-center"
                     onClick={toggleMenu}>
                     <span className="user-name">
-                        {user.first_name}
+                        {user?.first_name}
                     </span>
                     <BsFillCaretDownFill
                         className={

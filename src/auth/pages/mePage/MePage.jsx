@@ -13,19 +13,19 @@ import { useForm } from '../../../hooks/useForm';
 export const MePage = () => {
     const { getProfile, userProfile, updateUser } = useAuth();
     const { showModal, setShowModal, handleCloseModal } = useModal();
-    const { formState, onInputChange } = useForm({
-        id: userProfile?.id || '',
-        first_name: userProfile?.first_name || '',
-        last_name: userProfile?.last_name || '',
-        email: userProfile?.email || '',
-        username: userProfile?.username || '',
-        phone_number: userProfile?.phone_number || '',
-        picture: userProfile?.picture || '',
-        address: userProfile?.address || '',
-        is_active: userProfile?.is_active || '',
-        verified_email: userProfile?.verified_email || '',
-        token: userProfile?.token || '',
-        token_expiry: userProfile?.token_expiry || ''
+    const { formState, onInputChange, onResetForm } = useForm({
+        id: '',
+        first_name: '',
+        last_name: '',
+        email: '',
+        username: '',
+        phone_number: '',
+        picture: '',
+        address: '',
+        is_active: '',
+        verified_email: '',
+        token: '',
+        token_expiry: ''
     });
     const [errors, setErrors] = useState({});
     const PHONE_NUMBER_REGEX = /^[0-9]{10}$/;
@@ -51,7 +51,23 @@ export const MePage = () => {
 
     useEffect(() => {
         getProfile();
-    }, []);
+        if (userProfile) {
+            onResetForm({
+                id: userProfile?.id,
+                first_name: userProfile?.first_name,
+                last_name: userProfile?.last_name,
+                email: userProfile?.email,
+                username: userProfile?.username,
+                phone_number: userProfile?.phone_number,
+                picture: userProfile?.picture,
+                address: userProfile?.address,
+                is_active: userProfile?.is_active,
+                verified_email: userProfile?.verified_email,
+                token: userProfile?.token,
+                token_expiry: userProfile?.token_expiry
+            });
+        }
+    }, [showModal]);
 
     return (
         <>

@@ -15,7 +15,7 @@ export const registerWithEmailAndPassword = ({ first_name, last_name, username, 
       dispatch(setUserCreated(data.response));
     }
     catch (error) {
-      console.log(error);
+      return;
     }
   };
 };
@@ -69,7 +69,6 @@ export const updateUserProfile = (user) => {
   return async dispatch => {
     try {
       const { data } = await api.put(`/users/${user.id}`, user);
-      console.log(data.response);
       dispatch(setUserProfile(data.response));
     } catch (error) {
       return;

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LoginForm } from '../../components/loginForm/LoginForm';
-import { useForm } from '../../../hooks/useForm';
+import { useForm } from '@/hooks/useForm';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
 import './LoginPage.scss';
+import Toast, {
+    newToast
+} from '../../../../ui/components/toast/Toast';
 
 export const LoginPage = () => {
     const { onLogin, userCreated } = useAuth();
@@ -12,24 +15,20 @@ export const LoginPage = () => {
         email: '',
         password: ''
     });
+    const [thetoasts, SetThetoasts] = useState([]);
 
     const onSubmit = (e) => {
         e.preventDefault();
         onLogin(formState);
     };
 
-    const showUserCreatedMessage = () => {
+    useEffect(() => {
         if (userCreated) {
-            return (
-                <div className='user-created'>
-                    <p>Usuario creado correctamente</p>
-                    <p>Te hemos enviado un link para validar tu email a { userCreated.email }</p>
-                </div>
-            );
+            const message = `Verificación de email enviada a ${userCreated.email}`;
+            const OneToast = newToast(message, 'success');
+            SetThetoasts([...thetoasts, OneToast]);
         }
-
-        return null;
-    };
+    }, []);
 
     return (
         <>
@@ -43,7 +42,12 @@ export const LoginPage = () => {
                 formState={formState}
                 onSubmit={onSubmit}
             />
-            { showUserCreatedMessage() }
+            <Toast
+                toastList={thetoasts}
+                position="bottom-left"
+                autoDelete={true}
+                autoDeleteTime={5000}
+            />
         </>
     );
 };

@@ -1,18 +1,18 @@
 import React from 'react';
 import './TourPage.scss';
 
-import { useAuth } from '../../../modules/auth/hooks/useAuth';
+import { useAuth } from '@/auth/hooks/useAuth';
 
-import logo from '../../../assets/img/mitur.png';
-import smartwatch from '../../../assets/img/smartwatch.svg';
-import mobileInterface from '../../../assets/img/mobile_interface.svg';
+import logo from '@/assets/img/mitur.png';
+import smartwatch from '@/assets/img/smartwatch.svg';
+import mobileInterface from '@/assets/img/mobile_interface.svg';
 
 //home image
-import home01 from '../../../assets/img/home/home01.jpg';
-import home02 from '../../../assets/img/home/home02.jpg';
-import home03 from '../../../assets/img/home/home03.jpg';
-import home04 from '../../../assets/img/home/home04.jpg';
-import { GoogleButton } from '../../../modules/auth/components/googleButton/GoogleButton';
+import home01 from '@/assets/img/home/home01.jpg';
+import home02 from '@/assets/img/home/home02.jpg';
+import home03 from '@/assets/img/home/home03.jpg';
+import home04 from '@/assets/img/home/home04.jpg';
+import { GoogleButton } from '@/modules/auth/components/googleButton/GoogleButton';
 import { NavLink } from 'react-router-dom';
 
 export const TourPage = () => {

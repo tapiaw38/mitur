@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../../../auth/hooks/useAuth';
+import { useAuth } from '../../../modules/auth/hooks/useAuth';
 import { listLinks } from '../../../helpers/listLinks';
 import { Links } from '../../components/links/Links';
 import { UserMenu } from '../../components/userMenu/UserMenu';

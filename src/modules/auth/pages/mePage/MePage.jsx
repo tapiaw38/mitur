@@ -4,11 +4,11 @@ import './MePage.scss';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import profileIcon from '../../../assets/img/auth/profile.png';
-import { useModal } from '../../../hooks/useModal';
-import { BaseModal } from '../../../ui/components/baseModal/BaseModal';
+import profileIcon from '@/assets/img/auth/profile.png';
+import { useModal } from '@/hooks/useModal';
+import { BaseModal } from '@/ui/components/baseModal/BaseModal';
 import { UserForm } from '../../components/userForm/UserForm';
-import { useForm } from '../../../hooks/useForm';
+import { useForm } from '@/hooks/useForm';
 
 export const MePage = () => {
     const { getProfile, userProfile, updateUser } = useAuth();
@@ -53,18 +53,18 @@ export const MePage = () => {
         getProfile();
         if (userProfile) {
             onResetForm({
-                id: userProfile?.id,
-                first_name: userProfile?.first_name,
-                last_name: userProfile?.last_name,
-                email: userProfile?.email,
-                username: userProfile?.username,
-                phone_number: userProfile?.phone_number,
-                picture: userProfile?.picture,
-                address: userProfile?.address,
-                is_active: userProfile?.is_active,
-                verified_email: userProfile?.verified_email,
-                token: userProfile?.token,
-                token_expiry: userProfile?.token_expiry
+                id: userProfile.id,
+                first_name: userProfile.first_name,
+                last_name: userProfile.last_name,
+                email: userProfile.email,
+                username: userProfile.username,
+                phone_number: userProfile.phone_number,
+                picture: userProfile.picture,
+                address: userProfile.address,
+                is_active: userProfile.is_active,
+                verified_email: userProfile.verified_email,
+                token: userProfile.token,
+                token_expiry: userProfile.token_expiry
             });
         }
     }, [showModal]);

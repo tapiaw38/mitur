@@ -14,7 +14,7 @@ export const authSlice = createSlice({
             : null,
         errorMessage: null,
         userProfile: null,
-        userCreated: null
+        userCreated: null,
     },
     reducers: {
         login: (state, { payload }) => {
@@ -39,8 +39,11 @@ export const authSlice = createSlice({
             state.userProfile = payload;
         },
         setUserCreated: (state, { payload }) => {
-            console.log(payload);
             state.userCreated = payload;
+        },
+        setError: (state, { payload }) => {
+            console.log(payload);
+            state.errorMessage = payload;
         }
     }
 });
@@ -51,4 +54,5 @@ export const {
     checkingCredentials,
     setUserProfile,
     setUserCreated,
+    setError,
 } = authSlice.actions;

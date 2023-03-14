@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useForm } from '../../../hooks/useForm';
+import { useForm } from '@/hooks/useForm';
 import { RegisterForm } from '../../components/registerFom/RegisterForm';
 import { useAuth } from '../../hooks/useAuth';
 
 import './RegisterPage.scss';
+import Toast, { newToast } from '../../../../ui/components/toast/Toast';
 
 export const RegisterPage = () => {
     const { formState, onInputChange } = useForm({
@@ -15,11 +16,9 @@ export const RegisterPage = () => {
         password: '',
         password_confirmation: ''
     });
-
-    const { onRegister } = useAuth();
-
+    const { onRegister, errorMessage } = useAuth();
     const [errors, setErrors] = useState({});
-
+    const [thetoasts, SetThetoasts] = useState([]);
     const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const USERNAME_REGEX = /^[a-zA-Z0-9_]+$/;
 
@@ -51,6 +50,14 @@ export const RegisterPage = () => {
         }
     };
 
+    useEffect(() => {
+        if(errorMessage) {
+            const message="Ocurrió un error al crear el usuario";
+            const OneToast=newToast(message, 'danger');
+            SetThetoasts([...thetoasts,OneToast]);
+        }
+    }, [errorMessage]);
+
     return (
         <>
             <div className="button-back-container">
@@ -63,6 +70,12 @@ export const RegisterPage = () => {
                 formState={formState}
                 onSubmit={onSubmit}
                 errors={errors}
+            />
+            <Toast
+                toastList={thetoasts}
+                position="bottom-left"
+                autoDelete={true}
+                autoDeleteTime={5000}
             />
         </>
     );

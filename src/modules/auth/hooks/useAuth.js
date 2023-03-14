@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../store/auth/authSlice';
+import { logout } from '@/store/auth/authSlice';
 import {
     getUserProfile,
     registerWithEmailAndPassword,
@@ -8,19 +8,19 @@ import {
     singInWithGoogle,
     updateUserProfile,
 
-} from '../../store/auth/thunks';
+} from '../../../store/auth/thunks'
 
 export const useAuth = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { user, status, userProfile, userCreated } = useSelector(
+    const { user, status, userProfile, userCreated, errorMessage } = useSelector(
         (state) => state.auth
     );
 
     const onRegister = (form) => {
         dispatch(registerWithEmailAndPassword(form));
-        if (userCreated) {
+        if (userCreated?.status === 'created') {
             navigate('/auth/login');
         }
     };
@@ -36,8 +36,8 @@ export const useAuth = () => {
         dispatch(singInWithGoogle(sso_type, code));
     };
 
-    const onLogout = (errorMessage = null) => {
-        dispatch(logout({ errorMessage }));
+    const onLogout = (error = null) => {
+        dispatch(logout({ error }));
         navigate('/auth/login');
     };
 
@@ -60,5 +60,6 @@ export const useAuth = () => {
         userProfile,
         getProfile,
         updateUser,
+        errorMessage
     };
 };

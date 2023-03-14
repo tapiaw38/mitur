@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { AuthRoute } from '../components/auth';
+
 import { AuthLayout } from '../layout/AuthLayout';
 import { LoginPage } from '../pages/loginPage/LoginPage';
-import { AuthRoute } from '../components/auth';
 import { MePage } from '../pages/mePage/MePage';
 import { RegisterPage } from '../pages/registerPage/RegisterPage';
 
